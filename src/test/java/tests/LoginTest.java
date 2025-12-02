@@ -30,9 +30,8 @@ public class LoginTest extends BaseTest {
     @Test()
     public void authCorrect() {
         System.out.println("CorrectLogin Tests are running in thread: " + Thread.currentThread().getId());
-        loginPage.open();
-        loginPage.authorization(UserFactory.withAdminPermission());
-        assertTrue(productsPage.isPageOpen());
+        loginPage.open()
+                .authorization(UserFactory.withAdminPermission());
         assertEquals(PRODUCTS.getDisplayName(), productsPage.getTitleText());
     }
 
@@ -43,8 +42,8 @@ public class LoginTest extends BaseTest {
     @Test(dataProvider = "loginData")
     public void authIncorrect(User user, String errorMsg) {
         System.out.println("IncorrectLogin Tests are running in thread: " + Thread.currentThread().getId());
-        loginPage.open();
-        loginPage.authorization(user);
+        loginPage.open()
+                .authorization(user);
         assertEquals(loginPage.checkErrorMsg(), errorMsg);
     }
 }

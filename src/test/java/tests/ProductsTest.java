@@ -16,12 +16,12 @@ public class ProductsTest extends BaseTest {
     public void checkAddingGoods() {
         System.out.println("Products Tests are running in thread: " + Thread.currentThread().getId());
         final String itemsName = "Test.allTheThings() T-Shirt (Red)";
-        loginPage.open();
-        loginPage.authorization(withAdminPermission());
-        productsPage.isPageOpen();
-        productsPage.addToCart(0);
-        productsPage.addToCart(itemsName);
-        productsPage.switchToCart();
+        loginPage.open()
+                .authorization(withAdminPermission());
+        productsPage.isPageOpen()
+                .addToCart(0)
+                .addToCart(itemsName)
+                .switchToCart();
         cartPage.waitCartPage();
         assertEquals("2", productsPage.getGoodsCounter());
         assertTrue(cartPage.getProductsNames().contains(itemsName));
